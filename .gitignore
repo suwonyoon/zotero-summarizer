@@ -14,3 +14,13 @@ tsconfig.tsbuildinfo
 .scaffold
 build
 logs
+
+# Documentation (not needed for users)
+CLAUDE.md
+CONTRIBUTING.md
+SECURITY.md
+AGENTS.md
+CHANGELOG.md
+ZOTERO-GPT-SPECIFICATION.md
+.github/ISSUE_TEMPLATE/
+.github/pull_request_template.md
