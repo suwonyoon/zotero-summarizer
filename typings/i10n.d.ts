@@ -23,4 +23,14 @@ export type FluentMessageId =
   | 'startup-begin'
   | 'startup-finish'
   | 'tabpanel-lib-tab-label'
-  | 'tabpanel-reader-tab-label';
+  | 'tabpanel-reader-tab-label'
+  | 'zoterogpt-complete'
+  | 'zoterogpt-context-generate'
+  | 'zoterogpt-error-no-api-key'
+  | 'zoterogpt-error-no-items'
+  | 'zoterogpt-generate-summary'
+  | 'zoterogpt-manage-presets'
+  | 'zoterogpt-menu-label'
+  | 'zoterogpt-processing'
+  | 'zoterogpt-select-presets'
+  | 'zoterogpt-settings';
