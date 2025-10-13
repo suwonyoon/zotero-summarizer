@@ -1,19 +1,18 @@
-# ZoteroGPT
+# Zotero Summarizer
 
 > AI-powered PDF summarization for Zotero using OpenAI GPT
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
-[![License](https://img.shields.io/github/license/suwonyoon/zotero-gpt?style=flat-square)](https://github.com/suwonyoon/zotero-gpt/blob/main/LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/suwonyoon/zotero-gpt?style=flat-square)](https://github.com/suwonyoon/zotero-gpt/releases/latest)
-[![GitHub Downloads](https://img.shields.io/github/downloads/suwonyoon/zotero-gpt/total?style=flat-square)](https://github.com/suwonyoon/zotero-gpt/releases)
+[![License](https://img.shields.io/github/license/suwonyoon/zotero-summarizer?style=flat-square)](https://github.com/suwonyoon/zotero-summarizer/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/suwonyoon/zotero-summarizer?style=flat-square)](https://github.com/suwonyoon/zotero-summarizer/releases/latest)
+[![GitHub Downloads](https://img.shields.io/github/downloads/suwonyoon/zotero-summarizer/total?style=flat-square)](https://github.com/suwonyoon/zotero-summarizer/releases)
 
 ---
 
 ## 📑 Table of Contents
 
 - [Features](#-features)
-- [Screenshots](#-screenshots)
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
@@ -35,16 +34,17 @@
 ## ✨ Features
 
 - **🤖 AI-Powered PDF Summarization** - Automatically generates summaries of academic papers using OpenAI GPT models
-- **📄 Smart PDF Processing** - Uploads PDFs to OpenAI for full-text analysis when available
+- **📄 Smart PDF Processing** - Size-aware processing: small PDFs (≤25MB) use Responses API with file upload, large PDFs use fulltext extraction
 - **🎨 Flexible Preset System** - Customize your summaries with:
   - **Language presets**: English, Korean, Korean+English Hybrid
   - **Content styles**: Academic Summary, Key Points, Methodology Focus, Results & Conclusions, Critical Analysis, ELI5
-- **⚙️ Easy Customization** - Create, edit, and delete custom presets through an intuitive dialog
+- **⚙️ Easy Customization** - Create, edit, and delete custom presets through an intuitive preset manager
 - **📝 Live Preview** - See the combined prompt before generating summaries
-- **🔄 Batch Processing** - Summarize multiple items at once
+- **🎨 Rich Text Formatting** - Optional Markdown to rich text HTML conversion for beautiful notes
+- **🔄 Batch Processing** - Summarize multiple items at once with progress tracking
 - **📋 Menu Integration** - Accessible via Tools menu and context menu
 - **💾 Automatic Note Creation** - Saves summaries as child notes in Zotero
-- **🔌 Dual API Support** - Uses Responses API (with PDF) or Chat Completions API (without PDF)
+- **🔌 Dual API Support** - Intelligently uses Responses API (with PDF) or Chat Completions API (title/abstract only)
 
 ---
 
@@ -67,7 +67,7 @@
 
 ## 📋 Prerequisites
 
-Before installing ZoteroGPT, ensure you have:
+Before installing Zotero Summarizer, ensure you have:
 
 - **Zotero 7 Beta or Later** - [Download Zotero 7](https://www.zotero.org/support/dev/zotero_7_for_developers)
 - **OpenAI API Key** - [Get your API key](https://platform.openai.com/api-keys)
@@ -85,18 +85,18 @@ Before installing ZoteroGPT, ensure you have:
 
 ### Method 1: From GitHub Releases (Recommended)
 
-1. Download the latest `.xpi` file from [Releases](https://github.com/suwonyoon/zotero-gpt/releases/latest)
+1. Download the latest `.xpi` file from [Releases](https://github.com/suwonyoon/zotero-summarizer/releases/latest)
 2. Open Zotero
 3. Go to **Tools → Add-ons**
 4. Click the gear icon ⚙️ → **Install Add-on From File...**
 5. Select the downloaded `.xpi` file
 6. Restart Zotero
-7. Configure your OpenAI API key: **Tools → ZoteroGPT → Settings**
+7. Configure your OpenAI API key: **Tools → Zotero Summarizer → Settings**
 
 ### Method 2: From Source
 
 ```bash
-git clone https://github.com/suwonyoon/zotero-gpt.git
+git clone https://github.com/suwonyoon/zotero-summarizer.git
 cd zotero-gpt
 npm install
 npm run build
@@ -106,7 +106,7 @@ The built plugin will be in `.scaffold/build/`. Install the `.xpi` file in Zoter
 
 ### Verify Installation
 
-After installation, you should see **ZoteroGPT** in the **Tools** menu.
+After installation, you should see **Zotero Summarizer** in the **Tools** menu.
 
 ---
 
@@ -114,7 +114,7 @@ After installation, you should see **ZoteroGPT** in the **Tools** menu.
 
 ### 1. Configure API Key
 
-1. Go to **Tools → ZoteroGPT → Settings**
+1. Go to **Tools → Zotero Summarizer → Settings**
 2. Enter your OpenAI API key
 3. (Optional) Change the model (default: `gpt-5-mini`, also supports `gpt-5`)
 4. Click **Confirm**
@@ -122,13 +122,13 @@ After installation, you should see **ZoteroGPT** in the **Tools** menu.
 ### 2. Generate Your First Summary
 
 1. Select one or more items in your Zotero library
-2. Right-click → **Generate AI Summary** (or **Tools → ZoteroGPT → Generate Summary**)
+2. Right-click → **Generate AI Summary** (or **Tools → Zotero Summarizer → Generate Summary**)
 3. Wait for processing (progress window will show status)
 4. View the generated summary in the item's child notes
 
 ### 3. Customize Presets (Optional)
 
-1. Go to **Tools → ZoteroGPT → Select Active Presets**
+1. Go to **Tools → Zotero Summarizer → Select Active Presets**
 2. Choose a language preset (single selection)
 3. Select one or more content style presets
 4. Preview the combined prompt on the right
@@ -160,7 +160,7 @@ After installation, you should see **ZoteroGPT** in the **Tools** menu.
 
 **Create a New Preset:**
 
-1. Go to **Tools → ZoteroGPT → Manage Prompt Presets**
+1. Go to **Tools → Zotero Summarizer → Manage Prompt Presets**
 2. Switch to the appropriate tab (Language or Content)
 3. Fill in the preset name and prompt
 4. Click **Add New**
@@ -187,7 +187,7 @@ After installation, you should see **ZoteroGPT** in the **Tools** menu.
 
 ### Settings
 
-Access via **Tools → ZoteroGPT → Settings**
+Access via **Tools → Zotero Summarizer → Settings**
 
 | Setting | Description | Default |
 |---------|-------------|---------|
@@ -196,7 +196,7 @@ Access via **Tools → ZoteroGPT → Settings**
 
 ### Preset Selection
 
-Access via **Tools → ZoteroGPT → Select Active Presets**
+Access via **Tools → Zotero Summarizer → Select Active Presets**
 
 - **Language Preset** (single selection):
   - English
@@ -213,12 +213,11 @@ Access via **Tools → ZoteroGPT → Select Active Presets**
 
 ### Preset Management
 
-Access via **Tools → ZoteroGPT → Manage Prompt Presets**
+Access via **Tools → Zotero Summarizer → Manage Prompt Presets**
 
 - Create custom language and content presets
 - Edit existing presets
 - Delete unwanted presets
-- Import/export presets (coming soon)
 
 ---
 
@@ -295,7 +294,7 @@ Costs vary based on PDF size and processing method:
 #### 1. "API Key is not configured"
 
 **Cause**: OpenAI API key not set
-**Solution**: Go to **Tools → ZoteroGPT → Settings** and enter your API key
+**Solution**: Go to **Tools → Zotero Summarizer → Settings** and enter your API key
 
 #### 2. "Failed to upload PDF" or "API request failed"
 
@@ -349,22 +348,22 @@ To enable detailed logging:
 
 ### General Questions
 
-**Q: Is ZoteroGPT free?**
+**Q: Is Zotero Summarizer free?**
 A: The plugin is free and open-source (AGPL-3.0), but you need an OpenAI API key which has associated costs.
 
 **Q: Which OpenAI models are supported?**
 A: `gpt-5-mini` (default, cost-effective) and `gpt-5` (higher quality, higher cost). Other models have been deprecated by OpenAI.
 
 **Q: Can I use this offline?**
-A: No, ZoteroGPT requires an internet connection to communicate with OpenAI's API.
+A: No, Zotero Summarizer requires an internet connection to communicate with OpenAI's API.
 
-**Q: Does ZoteroGPT store my PDFs or data?**
-A: No. PDFs are sent directly to OpenAI's servers. See [SECURITY.md](SECURITY.md) for details.
+**Q: Does Zotero Summarizer store my PDFs or data?**
+A: No. PDFs are sent directly to OpenAI's servers for processing.
 
 ### Privacy & Security
 
 **Q: Is my data private?**
-A: Data is sent to OpenAI subject to their [privacy policy](https://openai.com/policies/privacy-policy). Review [SECURITY.md](SECURITY.md) for security best practices.
+A: Data is sent to OpenAI subject to their [privacy policy](https://openai.com/policies/privacy-policy). Be cautious when processing sensitive documents.
 
 **Q: How is my API key stored?**
 A: Your API key is stored in Zotero's encrypted preference system. However, be cautious about sharing your Zotero profile.
@@ -372,35 +371,47 @@ A: Your API key is stored in Zotero's encrypted preference system. However, be c
 ### Technical Questions
 
 **Q: Can I customize the prompts?**
-A: Yes! Use **Tools → ZoteroGPT → Manage Prompt Presets** to create custom presets.
+A: Yes! Use **Tools → Zotero Summarizer → Manage Prompt Presets** to create custom presets.
 
 **Q: Can I use local AI models instead of OpenAI?**
 A: Not currently. This would require significant architecture changes. Consider opening a feature request!
 
 **Q: Does this work with Zotero 6?**
-A: No, ZoteroGPT requires Zotero 7 or later.
+A: No, Zotero Summarizer requires Zotero 7 or later.
 
 ---
 
 ## 🗺️ Roadmap
 
-### Planned Features
+### Current Features
 
-- [ ] **Import/Export Presets** - Share custom presets with others
-- [ ] **Template Variables** - Use dynamic placeholders in prompts (e.g., `{title}`, `{authors}`)
-- [ ] **Custom Models** - Easy dropdown for model selection
-- [ ] **Summary Templates** - Customizable note formatting (Markdown, HTML, etc.)
-- [ ] **Batch Export** - Export multiple summaries at once
-- [ ] **Progress Notifications** - Better feedback during long operations
+All core features are **implemented and working**:
+- ✅ AI-Powered PDF Summarization (small PDFs ≤25MB via Responses API, large PDFs via fulltext extraction)
+- ✅ Flexible Preset System (language & content presets with full CRUD operations)
+- ✅ Live Preview of combined prompts
+- ✅ Batch Processing for multiple items
+- ✅ Progress Notifications during processing
+- ✅ Markdown to Rich Text conversion
+- ✅ Automatic Note Creation
+
+### Not Yet Implemented
+
+The following features are **planned but not yet implemented**:
+
+- [ ] **Import/Export Presets** - Share custom presets with others as JSON files
+- [ ] **Template Variables** - Use dynamic placeholders in prompts (e.g., `{title}`, `{authors}`, `{year}`)
+- [ ] **Custom Models Dropdown** - Easy model selection UI (currently type manually)
+- [ ] **Summary Templates** - Customizable note formatting beyond current options
+- [ ] **Batch Export** - Export multiple summaries to files at once
 - [ ] **API Usage Tracking** - Monitor OpenAI costs within the plugin
 - [ ] **Local AI Support** - Integration with local models (Ollama, LM Studio)
-- [ ] **Summary History** - Track and version summaries
-- [ ] **Multi-Language UI** - Localization for other languages
+- [ ] **Summary History** - Track and version summaries over time
+- [ ] **Multi-Language UI** - Localization for languages other than English
 
 ### Under Consideration
 
 - Support for other AI providers (Anthropic Claude, Google Gemini)
-- Summary comparison mode (compare different presets)
+- Summary comparison mode (compare different presets side-by-side)
 - Citation extraction from summaries
 - Integration with Zotero notes editor
 
@@ -412,8 +423,8 @@ A: No, ZoteroGPT requires Zotero 7 or later.
 
 ```bash
 # Clone the repository
-git clone https://github.com/suwonyoon/zotero-gpt.git
-cd zotero-gpt
+git clone https://github.com/suwonyoon/zotero-summarizer.git
+cd zotero-summarizer
 
 # Install dependencies
 npm install
@@ -428,7 +439,7 @@ npm start
 npm run build
 ```
 
-Output: `.scaffold/build/zotero-gpt-{version}.xpi`
+Output: `.scaffold/build/zotero-summarizer-{version}.xpi`
 
 ### Commands
 
@@ -444,7 +455,7 @@ Output: `.scaffold/build/zotero-gpt-{version}.xpi`
 ### Project Structure
 
 ```
-zotero-gpt/
+zotero-summarizer/
 ├── src/
 │   ├── modules/
 │   │   ├── zoterogpt.ts        # Main plugin logic
@@ -452,6 +463,7 @@ zotero-gpt/
 │   ├── utils/
 │   │   ├── openai.ts           # OpenAI API client
 │   │   ├── presets.ts          # Preset system
+│   │   ├── markdown.ts         # Markdown to HTML converter
 │   │   └── locale.ts           # Localization utilities
 │   └── hooks.ts                # Plugin lifecycle hooks
 ├── addon/
@@ -461,19 +473,14 @@ zotero-gpt/
 ├── .github/
 │   └── workflows/              # CI/CD workflows
 ├── screenshots/                # Documentation screenshots
-├── CONTRIBUTING.md             # Contribution guidelines
-├── CHANGELOG.md                # Version history
-├── SECURITY.md                 # Security policy
 └── README.md                   # This file
 ```
-
-See [CLAUDE.md](CLAUDE.md) for detailed architecture documentation.
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions!
 
 ### Quick Contribution Guide
 
@@ -485,7 +492,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ### Areas Where Help is Needed
 
-- 🐛 **Bug fixes** - Check [open issues](https://github.com/suwonyoon/zotero-gpt/issues)
+- 🐛 **Bug fixes** - Check [open issues](https://github.com/suwonyoon/zotero-summarizer/issues)
 - 📖 **Documentation** - Improve guides, add examples, create tutorials
 - 🌍 **Localization** - Translate the UI to other languages
 - ✨ **New features** - See [roadmap](#-roadmap) for ideas
@@ -495,10 +502,6 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## 🔒 Security
 
-### Reporting Vulnerabilities
-
-Please see [SECURITY.md](SECURITY.md) for our security policy and how to report vulnerabilities.
-
 ### Security Best Practices
 
 - **Never share your API key** with anyone
@@ -507,7 +510,9 @@ Please see [SECURITY.md](SECURITY.md) for our security policy and how to report 
 - **Rotate your API key** periodically
 - **Review documents** before processing sensitive PDFs
 
-For more details, see [SECURITY.md](SECURITY.md).
+### Data Privacy
+
+Data is sent to OpenAI subject to their [privacy policy](https://openai.com/policies/privacy-policy). PDFs are uploaded directly to OpenAI's servers for processing. Be cautious when processing sensitive documents.
 
 ---
 
@@ -545,10 +550,10 @@ This project is licensed under the **AGPL-3.0 License** - see the [LICENSE](LICE
 
 ### Get Help
 
-- **📖 Documentation**: Check this README and [CLAUDE.md](CLAUDE.md)
-- **❓ Questions**: Open a [Discussion](https://github.com/suwonyoon/zotero-gpt/discussions)
-- **🐛 Bug Reports**: Open an [Issue](https://github.com/suwonyoon/zotero-gpt/issues)
-- **💡 Feature Requests**: Open an [Issue](https://github.com/suwonyoon/zotero-gpt/issues) with the `enhancement` label
+- **📖 Documentation**: Check this README for complete documentation
+- **❓ Questions**: Open a [Discussion](https://github.com/suwonyoon/zotero-summarizer/discussions)
+- **🐛 Bug Reports**: Open an [Issue](https://github.com/suwonyoon/zotero-summarizer/issues)
+- **💡 Feature Requests**: Open an [Issue](https://github.com/suwonyoon/zotero-summarizer/issues) with the `enhancement` label
 
 ### Stay Updated
 
@@ -560,9 +565,9 @@ This project is licensed under the **AGPL-3.0 License** - see the [LICENSE](LICE
 
 ## 📊 Statistics
 
-![GitHub stars](https://img.shields.io/github/stars/suwonyoon/zotero-gpt?style=social)
-![GitHub forks](https://img.shields.io/github/forks/suwonyoon/zotero-gpt?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/suwonyoon/zotero-gpt?style=social)
+![GitHub stars](https://img.shields.io/github/stars/suwonyoon/zotero-summarizer?style=social)
+![GitHub forks](https://img.shields.io/github/forks/suwonyoon/zotero-summarizer?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/suwonyoon/zotero-summarizer?style=social)
 
 ---
 
@@ -577,21 +582,6 @@ This project is licensed under the **AGPL-3.0 License** - see the [LICENSE](LICE
 <p align="center">
   <strong>Made with ❤️ for the academic community</strong>
   <br>
-  <sub>If ZoteroGPT helps your research, please consider giving it a ⭐</sub>
+  <sub>If Zotero Summarizer helps your research, please consider giving it a ⭐</sub>
 </p>
 
----
-
-## 📝 Changelog
-
-For a detailed list of changes, see [CHANGELOG.md](CHANGELOG.md).
-
-### Recent Updates
-
-- **v0.1.0** (Current) - Initial release
-  - AI-powered PDF summarization
-  - Flexible preset system
-  - Batch processing support
-  - OpenAI Responses API & Chat Completions API integration
-
-[View full changelog →](CHANGELOG.md)
